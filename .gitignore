@@ -9,6 +9,10 @@
 # production
 /build
 
+/palette
+
+src/**/*.css
+
 # misc
 .DS_Store
 .env.local
@@ -21,3 +25,4 @@ yarn-debug.log*
 yarn-error.log*
 
 key.js
+eg-manifest.json
