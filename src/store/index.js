@@ -1,5 +1,4 @@
 import { createStore, applyMiddleware, compose } from 'redux';
-import modules from './modules';
 
 const isDevelopment = process.env.NODE_ENV === 'development';
 
