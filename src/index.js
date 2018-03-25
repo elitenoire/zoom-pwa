@@ -5,7 +5,7 @@ import { BrowserRouter } from 'react-router-dom';
 
 import App from './App';
 import store from './store';
-// import './styles/main.scss';
+import './style/index.css';
 import registerServiceWorker from './registerServiceWorker';
 
 const Root = () => {

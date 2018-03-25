@@ -1,9 +1,10 @@
 // site.scss
 
 // 1. Your custom variables and variable overwrites.
-@import "theme/accordion.scss";
-@import "theme/alert.scss";
-@import "theme/align.scss";
+// @import "theme/accordion.scss";
+// @import "theme/alert.scss";
+// @import "theme/align.scss";
+@import "theme/navbar.scss";
 // ... import all
 
 // 2. Import default variables and available mixins.
@@ -11,11 +12,11 @@
 @import "uikit/src/scss/mixins.scss";
 
 // 3. Your custom mixin overwrites.
-@import "theme/accordion-mixins.scss";
-@import "theme/alert-mixins.scss";
-@import "theme/align-mixins.scss";
+// @import "theme/accordion-mixins.scss";
+// @import "theme/alert-mixins.scss";
+// @import "theme/align-mixins.scss";
 // ... import all
 
 // 4. Import UIkit
-// Use single import statements from the UIkit source to minimize compiled css
+//TODO: Use single import statements from the UIkit source to minimize compiled css
 @import "uikit/src/scss/uikit.scss";

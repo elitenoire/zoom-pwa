@@ -1,12 +1,15 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-      </div>
-    );
-  }
+import AppShell from './components/AppShell'
+
+const App = () => {
+  return (
+    <React.Fragment>
+      <AppShell>
+        <p>Static Content Test</p>
+      </AppShell>
+    </React.Fragment>
+  )
 }
 
 export default App;
