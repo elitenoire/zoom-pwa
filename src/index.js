@@ -1,20 +1,31 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { BrowserRouter } from 'react-router-dom';
+import { ConnectedRouter } from 'react-router-redux';
+// import { BrowserRouter as Router } from 'react-router-dom';
+import createHistory from 'history/createBrowserHistory';
+
+import UIkit from 'uikit';
+import Icons from 'uikit/dist/js/uikit-icons';
 
 import App from './App';
-import store from './store';
+import configureStore from './store';
 import './style/index.css';
 import registerServiceWorker from './registerServiceWorker';
 
-const Root = () => {
+// loads the Icon plugin
+UIkit.use(Icons);
+
+const history = createHistory({ basename: process.env.PUBLIC_URL});
+const store = configureStore(history);
+
+const Root = () => (
     <Provider store={store}>
-        <BrowserRouter>
+        <ConnectedRouter history={history}>
             <App />
-        </BrowserRouter>
+        </ConnectedRouter>
     </Provider>
-}
+);
 
 ReactDOM.render(<Root />, document.getElementById('root'));
 registerServiceWorker();

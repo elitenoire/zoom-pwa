@@ -1,4 +1,5 @@
 import { createStore, applyMiddleware, compose } from 'redux';
+import { routerMiddleware } from 'react-router-redux';
 
 import createSagaMiddleware from 'redux-saga';
 
@@ -7,7 +8,7 @@ import defaultConfig from '@redux-offline/redux-offline/lib/defaults';
 import { createOfflineMiddleware } from '@redux-offline/redux-offline/lib/middleware';
 
 //import reducer and saga
-import reducers from './reducers';
+import reducers from '../reducers';
 // import rootSaga from './sagas';
 
 // use redux devtools in dev env
@@ -19,21 +20,18 @@ const composeEnhancers = devTools || compose;
 const offlineConfig = {
   ...defaultConfig,
 };
-// const history = createHistory({ basename: process.env.PUBLIC_URL})
-// const reduxSaga = createReduxSaga();
-// const middlewares = [routerMiddleware(history), reduxSaga]
 
 const sagaMiddleware = createSagaMiddleware();
 const middleware = [sagaMiddleware, createOfflineMiddleware(offlineConfig)];
 
 
-const configure = (preloadedState = {}) => {
+const configure = (history, preloadedState = {}) => {
   const createOfflineStore = offline(offlineConfig)(createStore);
 
   const store = createOfflineStore(
     reducers,
     preloadedState,
-    composeEnhancers(applyMiddleware(...middleware))
+    composeEnhancers(applyMiddleware(routerMiddleware(history), ...middleware))
   );
 
   // run the sagas
