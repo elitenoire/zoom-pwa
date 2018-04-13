@@ -58,6 +58,7 @@
 
 
 // importScripts('/workbox-sw.js');
+// importScripts('./workbox-sw.prod.v3.0.0.js');
 //self.workbox.logLevel = self.workbox.LOG_LEVEL.verbose;
 
 const w = new self.WorkboxSW();
@@ -67,21 +68,34 @@ self.addEventListener('activate', event => event.waitUntil(self.clients.claim())
 
 w.precache([]);
 
+// Set logs level to `debug` to view all logs
+// w.core.setLogLevel(w.core.LOG_LEVELS.debug);
+
 // app-shell
 w.router.registerRoute('/', w.strategies.networkFirst());
 w.router.registerRoute(/^\/$|home|profile|work|contact/, w.strategies.networkFirst());
 
-// webfont-cache
-const webFontHandler = w.strategies.cacheFirst({
-  cacheName: 'webfont-cache',
-  cacheExpiration: {
-    maxEntries: 20
-  },
-  cacheableResponse: { statuses: [0, 200] }
-});
+// dynamic-images
+
+w.router.registerRoute(/.*\.(?:png|jpg|jpeg|svg|gif)/g, imagesHandler);
+// /\.(?:png|jpg|gif)$/
+
+// Strategy for fallback image
+// w.router.registerRoute(/.*\.(?:png|jpg|jpeg|svg|gif)/, ({ event }) => {
+//   return imagesHandler.handle({event})
+//           .catch(imagesFallbackHandler)
+// });
+
+
 w.router.registerRoute(/https:\/\/fonts.googleapis.com\/.*/, webFontHandler);
 w.router.registerRoute(/https:\/\/fonts.gstatic.com\/.*/, webFontHandler);
 w.router.registerRoute(/https:\/\/use.fontawesome.com\/.*/, webFontHandler);
+
+
+w.router.registerRoute(
+  new RegExp('https://fonts.(?:googleapis|gstatic).com/(.*)'),
+  webFontHandler
+);
 
 // get-urls-cache
 // const API = /https:\/\/us-central1-joanne-lee.cloudfunctions.net\/getUrls\/.*/;
@@ -100,3 +114,47 @@ w.router.registerRoute(/https:\/\/use.fontawesome.com\/.*/, webFontHandler);
 //     cacheableResponse: { statuses: [0, 200] }
 //   })
 // );
+
+// Runtime caching route-match handlers
+
+const imagesHandler = w.strategies.cacheFirst({
+  cacheName: 'api-images-cache',
+  plugins: [
+    new workbox.expiration.Plugin({
+      //cache only 50 images
+      maxEntries: 50,
+      // cache max 7 days
+      maxAgeSeconds: 24 * 60 * 60 * 7
+    })
+  ]
+  // cacheExpiration: {
+  //   maxEntries: 50
+  // }
+});
+
+// webfont-cache
+const webFontHandler = w.strategies.cacheFirst({
+  cacheName: 'webfont-cache',
+  plugins: [
+    new workbox.expiration.Plugin({
+      //cache only 30 entries
+      maxEntries: 30,
+      // cache max 7 days
+      maxAgeSeconds: 24 * 60 * 60 * 7
+    }),
+    new workbox.cacheableResponse.Plugin({
+      statuses: [0, 200],
+      headers: { 'X-Is-Cacheable': 'true',},
+    })
+  ]
+});
+
+
+//Fallbacks
+// Retrieve Image Placehoder from cache/idb
+// Strategy I plan to do is retrieve cached news source image instead
+// then fallback to dummy image if not present
+const imagesFallbackHandler = (err) => {
+  console.error('Failed to retrieve image from url')
+  return caches.match('/dummy-image.png');
+}

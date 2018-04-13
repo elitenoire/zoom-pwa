@@ -1,0 +1,166 @@
+{    
+    "General" : [
+        {
+            "id": "bbc-news",
+            "name": "BBC News",
+            "url": "http://www.bbc.co.uk/news"
+        },
+        {
+            "id": "cnn",
+            "name": "CNN",
+            "url": "http://us.cnn.com"
+        },
+        {
+            "id": "fox-news",
+            "name": "Fox News",
+            "url": "http://www.foxnews.com"
+        },
+        {
+            "id": "google-news",
+            "name": "Google News",
+            "url": "https://news.google.com"
+        },
+        {
+            "id": "msnbc",
+            "name": "MSNBC",
+            "url": "http://www.msnbc.com"
+        },
+        {
+            "id": "news24",
+            "name": "News24",
+            "url": "http://www.news24.com"
+        },
+        {
+            "id": "reuters",
+            "name": "Reuters",
+            "url": "http://www.reuters.com"
+        }
+    ],
+    "Business" : [
+        {
+            "id": "bloomberg",
+            "name": "Bloomberg",
+            "url": "http://www.bloomberg.com"
+        },
+        {
+            "id": "cnbc",
+            "name": "CNBC",
+            "url": "http://www.cnbc.com"
+        },
+        {
+            "id": "fortune",
+            "name": "Fortune",
+            "url": "http://www.fortune.com"
+        },
+        {
+            "id": "the-economist",
+            "name": "The Econonmist",
+            "url": "http://www.economist.com"
+        },
+        {
+            "id": "the-wall-street-journal",
+            "name": "The Wall Street Journal",
+            "url": "http://www.wsj.com"
+        }
+    ],   
+    "Entertainment" : [
+        {
+            "id": "buzzfeed",
+            "name": "BuzzFeed",
+            "url": "https://www.buzzfeed.com"
+        },
+        {
+            "id": "daily-mail",
+            "name": "Daily Mail",
+            "url": "http://www.dailymail.co.uk/home/index.html"
+        },
+        {
+            "id": "entertainment-weekly",
+            "name": "Entertainment Weekly",
+            "url": "http://www.ew.com"
+        },
+        {
+            "id": "ign",
+            "name": "IGN",
+            "url": "http://www.ign.com"
+        },
+        {
+            "id": "mtv-news",
+            "name": "MTV News",
+            "url": "http://www.mtv.com/news"
+        }
+    ],   
+    "Health": [
+        {
+            "id": "medical-news-today",
+            "name": "Medical News Today",
+            "url": "http://www.medicalnewstoday.com"
+        }
+    ],
+    "Science": [
+        {
+            "id": "national-geographic",
+            "name": "National Geographic",
+            "url": "http://news.nationalgeographic.com"
+        },
+        {
+            "id": "new-scientist",
+            "name": "New Scientist",
+            "url": "https://www.newscientist.com/section/news"
+        }
+    ],
+    "Sports": [
+        {
+            "id": "bbc-sport",
+            "name": "BBC Sport",
+            "url": "http://www.bbc.co.uk/sport"
+        },
+        {
+            "id": "espn",
+            "name": "ESPN",
+            "url": "http://espn.go.com"
+        },
+        {
+            "id": "four-four-two",
+            "name": "FourFourTwo",
+            "url": "http://www.fourfourtwo.com/news"
+        },
+        {
+            "id": "fox-sports",
+            "name": "Fox Sports",
+            "url": "http://www.foxsports.com"
+        },
+        {
+            "id": "the-sport-bible",
+            "name": "The Sport Bible",
+            "url": "http://www.sportbible.com"
+        }
+    ],
+    "Technology": [
+        {
+            "id": "crypto-coins-news",
+            "name": "Crypto Coins News",
+            "url": "https://www.ccn.com"
+        },
+        {
+            "id": "hacker-news",
+            "name": "Hacker News",
+            "url": "https://news.ycombinator.com"
+        },
+        {
+            "id": "techcrunch",
+            "name": "TechCrunch",
+            "url": "https://www.techcrunch.com"
+        },
+        {
+            "id": "the-next-web",
+            "name": "The Next Web",
+            "url": "http://thenextweb.com"
+        },
+        {
+            "id": "wired",
+            "name": "Wired",
+            "url": "http://www.wired.com"
+        }
+    ]
+}

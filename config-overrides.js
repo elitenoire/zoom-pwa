@@ -1,16 +1,3 @@
-/* config-overrides.js */
-//GenerateSW version of Workbox for easy pre-caching functionality
-// const {rewireWorkboxGenerate} = require('react-app-rewire-workbox');
-
-// module.exports = function override(config, env) {
-//     if (env === "production") {
-//         console.log("Production build - Adding Workbox for PWAs");
-//         config = rewireWorkboxGenerate()(config, env);
-//     }
-
-//     return config;
-// };
-
 const {rewireWorkboxInject, defaultInjectConfig} = require('react-app-rewire-workbox');
 const path = require('path');
 
@@ -22,6 +9,7 @@ module.exports = function override(config, env) {
         ...defaultInjectConfig,
         swSrc: path.join(__dirname, 'src', 'custom-sw.js'),
         swDest: path.join(__dirname, 'build', 'custom-sw.js'),
+        dontCacheBustUrlsMatching: /\.\w{8}\./
         };
         config = rewireWorkboxInject(workboxConfig)(config, env);
     }
@@ -37,3 +25,17 @@ module.exports = function override(config, env) {
 //     swSrc: './src/service-worker.js',
 //     swDest: './service-worker.js',
 //   };
+// new WorkboxWebpackPlugin({
+// const BUILD_DIR = path.join(__dirname, './build');
+
+//     globDirectory: BUILD_DIR,
+
+//     globPatterns: ['**/*.{html,js,css}'],
+
+//     globIgnores: ['**/service-worker.js'],
+
+//     swSrc: path.join(ROOT_DIR, 'service-worker.js'),
+
+//     swDest: path.join(BUILD_DIR, 'sw.js'),
+
+//   })

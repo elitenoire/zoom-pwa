@@ -1,12 +1,17 @@
-import { combineReducers } from 'redux';
-// import { reducer as formReducer} from 'redux-form'
+import { combineReducers } from 'redux'
 import { routerReducer } from 'react-router-redux'
-import articleReducer from './articleReducer';
+import headlinesReducer from './headlinesReducer'
+import filterReducer from './filterReducer'
+import sourcesReducer from './sourcesReducer'
+import settingsReducer from './settingsReducer'
 
 
 const rootReducer = combineReducers({
     router: routerReducer,
-    articles: articleReducer
+    headlines: headlinesReducer,
+    filters: filterReducer,
+    sources: sourcesReducer,
+    settings: settingsReducer
 })
-// test: () => ({trial : 'yes'})
-export default rootReducer;
+
+export default rootReducer
