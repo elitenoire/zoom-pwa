@@ -3,15 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@egjs/react-layout": "^1.2.6",
-    "@redux-offline/redux-offline": "^2.3.2",
-    "idb": "^2.1.1",
+    "@egjs/react-layout": "^1.2.8",
+    "@material-ui/icons": "^1.0.0-beta.42",
+    "cra-append-sw": "^2.3.0",
     "material-ui": "^1.0.0-beta.41",
     "material-ui-enhanced-fields": "^2.0.0",
-    "material-ui-icons": "^1.0.0-beta.36",
     "react": "^16.3.1",
-    "react-app-rewire-workbox": "^2.0.1",
-    "react-app-rewired": "^1.5.0",
     "react-content-loader": "^3.1.1",
     "react-country-flag": "^0.2.0",
     "react-dom": "^16.3.1",
@@ -19,14 +16,16 @@
     "react-router-dom": "^4.2.2",
     "react-router-redux": "^5.0.0-alpha.9",
     "react-scripts": "1.1.4",
+    "react-timeago": "^4.1.9",
     "redux": "^3.7.2",
-    "redux-thunk": "^2.2.0",
-    "workbox-webpack-plugin": "^3.1.0"
+    "redux-persist": "^5.9.1",
+    "redux-thunk": "^2.2.0"
   },
   "scripts": {
-    "start": "react-app-rewired start",
-    "build": "react-app-rewired build",
-    "test": "react-app-rewired test --env=jsdom",
+    "start": "react-scripts start",
+    "startSW": "react-scripts build && cra-append-sw --skip-compile --mode dev ./src/custom-sw.js",
+    "build": "react-scripts build && cra-append-sw --skip-compile --mode build ./src/custom-sw.js",
+    "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
   "engines": {

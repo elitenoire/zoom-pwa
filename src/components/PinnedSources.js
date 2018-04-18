@@ -7,7 +7,7 @@ import Typography from 'material-ui/Typography';
 import Avatar from 'material-ui/Avatar';
 
 // Placeholder image icon for news sources
-import newsImage from '../assets/placeholder-source.png'
+// import newsImage from '../assets/placeholder-source.png'
 
 
 // const IconURL = 'https://besticon-demo.herokuapp.com/icon?url='

@@ -3,10 +3,12 @@ import { connect } from 'react-redux';
 import { fetchHeadlines, fetchSources } from '../actions'
 
 import { GridLayout } from '@egjs/react-layout'
-// import Masonry from 'react-masonry-component';
-// import Masonry from '../components/Masonry';
 import ContentLoader from '../components/ContentLoader'
 import HeadlineCard from '../components/HeadlineCard'
+
+import Page from '../components/Page'
+
+import imagePlaceholder from '../assets/placeholder-headlines.png'
 
 class HeadlinesGrid extends Component {
     componentDidMount(){
@@ -14,58 +16,48 @@ class HeadlinesGrid extends Component {
     }
 
     render() {
-        const { isFetching, headlines } = this.props
+        const { isFetching, data, error } = this.props
+        const { message, articles:headlines } = data
+        console.log(imagePlaceholder)
         return (
             <div style={{position: 'relative'}}>
-                {isFetching && <ContentLoader />}
-                {!isFetching && !!headlines && (
-                    <GridLayout
-                    tag="div"
-                    margin={16}
-                    align="center"
-                    isEqualSize={false}
-                    >
-                        {headlines.map((headline, index) => {
-                        const { title, author, description, url, urlToImage, publishedAt, source} = headline
-                        return (
-                            <HeadlineCard
-                                key={index + '-' + title}
-                                title={title}
-                                source={source.name}
-                                author={author || source.name || 'Anonymous'}
-                                url={url}
-                                description={description}
-                                urlImage={urlToImage}
-                                date={publishedAt}
-                            />
-                        )
-                        })}
-                    </GridLayout>
-                )}
+            {
+                isFetching ?
+                <ContentLoader /> :
+                !isFetching && !!headlines && headlines.length!==0 ? (
+                <GridLayout
+                tag="div"
+                margin={16}
+                align="center"
+                isEqualSize={false}
+                >
+                    {headlines.map((headline, index) => {
+                    const { title, author, description, url, urlToImage, publishedAt, source} = headline
+                    return (
+                        <HeadlineCard
+                            key={index + '-' + title}
+                            title={title}
+                            source={source.name}
+                            author={author || source.name || 'Anonymous'}
+                            url={url}
+                            description={description}
+                            urlImage={urlToImage || imagePlaceholder}
+                            date={publishedAt}
+                        />
+                    )
+                    })}
+                </GridLayout>
+                ) :
+                <Page message={error || message || 'Nothing Found.'} />
+            }
             </div>
         );
     }
 }
 
 export default connect(
-    ({ headlines: { headlines, isFetching } }) => ({ headlines: headlines.articles, isFetching }),
+    ({ headlines: { headlines, isFetching, error } }) => ({ data:headlines, isFetching, error }),
     { fetchHeadlines, fetchSources }
 )(
     HeadlinesGrid
 )
-
-//  <Masonry
-//     items={this.props.headlines}
-//     itemComponent={MyMasonryItem}
-//     alignCenter
-//     containerClassName="masonry"
-//     layoutClassName="masonry-view"
-//     pageClassName="masonry-page"
-//     loadingElement={<span>Loading...</span>}
-//     columnWidth={columnWidth}
-//     columnGutter={columnGutter}
-//     hasMore={this.props.hasMore}
-//     isLoading={this.props.isFetching}
-//     onInfiniteLoad={this.onFetch}
-//     getState={this.props.getState}
-//   />

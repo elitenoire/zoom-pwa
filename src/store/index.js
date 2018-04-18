@@ -1,16 +1,11 @@
 import { createStore, applyMiddleware, compose } from 'redux';
 import { routerMiddleware } from 'react-router-redux';
 import thunk from 'redux-thunk';
+import { persistStore, persistReducer } from 'redux-persist'
+import storage from 'redux-persist/lib/storage'
 
-// import createSagaMiddleware from 'redux-saga';
+import rootReducer from '../reducers';
 
-// import { offline } from '@redux-offline/redux-offline';
-// import defaultConfig from '@redux-offline/redux-offline/lib/defaults';
-// import { createOfflineMiddleware } from '@redux-offline/redux-offline/lib/middleware';
-
-//import reducer and saga
-import reducers from '../reducers';
-// import rootSaga from './sagas';
 
 // use redux devtools in dev env
 const isDevelopment = process.env.NODE_ENV === 'development';
@@ -18,37 +13,27 @@ const isDevelopment = process.env.NODE_ENV === 'development';
 const devTools = isDevelopment && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__;
 const composeEnhancers = devTools || compose;
 
-// const offlineConfig = {
-//   ...defaultConfig,
-// };
+const persistConfig = {
+  key: 'zoom-state',
+  storage,
+}
 
-// const sagaMiddleware = createSagaMiddleware();
-// const middleware = [sagaMiddleware, createOfflineMiddleware(offlineConfig)];
+
 const middleware = [thunk]
 
 
-const configure = (history, preloadedState = {}) => {
-  // const createOfflineStore = offline(offlineConfig)(createStore);
+const configure = (history) => {
 
-  //createOfflineStore
-  const store = createStore(
-    reducers,
-    preloadedState,
+  const persistedReducer = persistReducer(persistConfig, rootReducer)
+
+  let store = createStore(
+    persistedReducer ,
     composeEnhancers(applyMiddleware(...middleware, routerMiddleware(history)))
   );
 
-  // run the sagas
-  // sagaMiddleware.run(rootSaga);
+  let persistor = persistStore(store)
 
-  return store;
+  return { store, persistor} ;
 };
 
 export default configure;
-
-// import { createOffline } from "@redux-offline/redux-offline";
-// const { middleware, enhanceReducer, enhanceStore } = createOffline(config);
-// const store = createStore(
-//   enhanceReducer(rootReducer),
-//   initialStore,
-//   compose(applyMiddleware(middleware), enhanceStore)
-// );

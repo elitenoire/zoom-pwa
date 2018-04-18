@@ -5,10 +5,10 @@ import { withStyles } from 'material-ui/styles';
 import Hidden from 'material-ui/Hidden';
 import BottomNavigation, { BottomNavigationAction } from 'material-ui/BottomNavigation';
 
-import HomeIcon from 'material-ui-icons/Home';
-import SearchIcon from 'material-ui-icons/Search';
-import FavoriteIcon from 'material-ui-icons/Favorite';
-import SettingsIcon from 'material-ui-icons/Settings';
+import HomeIcon from '@material-ui/icons/Home';
+import SearchIcon from '@material-ui/icons/Search';
+import FavoriteIcon from '@material-ui/icons/Favorite';
+import SettingsIcon from '@material-ui/icons/Settings';
 
 const styles = theme => ({
     root: {

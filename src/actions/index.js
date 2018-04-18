@@ -47,10 +47,6 @@ export const setCountry = country => dispatch => {
 export const setSources = (medium, sources) => dispatch => {
     dispatch({ type: `SET_FILTER_SOURCE_VIA_${medium.toUpperCase()}`, sources })
     dispatch(push('/'))
-    console.log('medium is ', medium, sources)
-
-    // no need for fetchHeadlines below
-    // return fetchHeadlines(dispatch, getState)
 }
 
 // Toggle setings -> push notifs & allow timeline

@@ -15,10 +15,10 @@ import Typography from 'material-ui/Typography'
 import Divider from 'material-ui/Divider'
 import Switch from 'material-ui/Switch';
 import Avatar from 'material-ui/Avatar';
-import PersonIcon from 'material-ui-icons/Person'
-import SlideshowIcon from 'material-ui-icons/Slideshow';
-import NotificationsIcon from 'material-ui-icons/Notifications';
-import PlaceIcon from 'material-ui-icons/Place';
+import PersonIcon from '@material-ui/icons/Person'
+import SlideshowIcon from '@material-ui/icons/Slideshow';
+import NotificationsIcon from '@material-ui/icons/Notifications';
+import PlaceIcon from '@material-ui/icons/Place';
 
 import CountrySelect from '../components/CountrySelect'
 import { toggleSettings, setCountry } from '../actions'
@@ -103,6 +103,9 @@ const Settings = ({ classes, ...props }) => {
                 </ListItem>
                 <Divider />
                 <ListSubheader component="div">Optional</ListSubheader>
+                <Typography variant="caption" align="center" color="error">
+                    These features will be supported in future versions
+                </Typography>
                 <ListItem>
                     <ListItemIcon>
                         <NotificationsIcon />
@@ -110,8 +113,15 @@ const Settings = ({ classes, ...props }) => {
                     <ListItemText primary="Push Notifications" />
                     <ListItemSecondaryAction>
                         <Switch
-                            onChange={() => (toggleSettings('push_notifs'))}
+                            onChange={() => {
+                                Notification.requestPermission(permission => {
+                                    if(permission === 'granted'){
+                                        toggleSettings('push_notifs')
+                                    }
+                                })
+                            }}
                             checked={subscribePushNotifs}
+                            disabled
                         />
                     </ListItemSecondaryAction>
                 </ListItem>
@@ -124,6 +134,7 @@ const Settings = ({ classes, ...props }) => {
                         <Switch
                             onChange={() => (toggleSettings('timeline'))}
                             checked={enableTimeline}
+                            disabled
                         />
                     </ListItemSecondaryAction>
                 </ListItem>

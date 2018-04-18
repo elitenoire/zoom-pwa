@@ -11,7 +11,7 @@ const INITIAL_STATE = {
 
 
 export default (state = INITIAL_STATE, action) => {
-    const { type, country } = action
+    const { type } = action
 
     switch(type) {
         case TOGGLE_PUSH_NOTIFS :

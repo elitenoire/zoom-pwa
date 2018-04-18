@@ -7,14 +7,17 @@ import Drawer from 'material-ui/Drawer';
 import Divider from 'material-ui/Divider';
 import  List, { ListItem, ListItemIcon, ListItemText } from 'material-ui/List';
 import IconButton from 'material-ui/IconButton/IconButton';
-import HomeIcon from 'material-ui-icons/Home';
-import SearchIcon from 'material-ui-icons/Search';
-import FavoriteIcon from 'material-ui-icons/Favorite';
-import SettingsIcon from 'material-ui-icons/Settings';
+import HomeIcon from '@material-ui/icons/Home';
+import SearchIcon from '@material-ui/icons/Search';
+import FavoriteIcon from '@material-ui/icons/Favorite';
+// import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
+import SettingsIcon from '@material-ui/icons/Settings';
 
 
-import ChevronLeftIcon from 'material-ui-icons/ChevronLeft';
-import ChevronRightIcon from 'material-ui-icons/ChevronRight';
+import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
+import ChevronRightIcon from '@material-ui/icons/ChevronRight';
+
+// import Logo from '../assets/logo.svg'
 
 const drawerWidth = 240;
 
