@@ -40,7 +40,7 @@ class HeadlineCard extends Component {
         return(
             <Card className={classes.card}>
                 <CardMedia
-                src={urlImage}
+                image={urlImage}
                 title={title}
                 className={classes.media}
                 />

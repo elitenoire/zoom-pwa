@@ -18,7 +18,7 @@ class HeadlinesGrid extends Component {
     render() {
         const { isFetching, data, error } = this.props
         const { message, articles:headlines } = data
-        console.log(imagePlaceholder)
+
         return (
             <div style={{position: 'relative'}}>
             {
